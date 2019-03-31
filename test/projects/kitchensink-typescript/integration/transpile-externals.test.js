@@ -22,4 +22,15 @@ describe('external unprocessed modules', () => {
 
     expect(result).toBe('External untranspiled dependency.');
   });
+
+  it('transpiles typescript for configured projects', async () => {
+    await initTest('transpile-configured-external-typescript');
+
+    const result = await page.$eval(
+      '#transpile-configured-external-typescript',
+      elm => elm.textContent,
+    );
+
+    expect(result).toBe('External untranspiled dependency.');
+  });
 });
