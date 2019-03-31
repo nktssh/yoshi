@@ -359,7 +359,7 @@ function createCommonWebpackConfig({
         // Rules for TS / TSX
         {
           test: /\.(ts|tsx)$/,
-          exclude: /(node_modules)/,
+          exclude: project.unprocessedModules,
           use: [
             {
               loader: 'thread-loader',
