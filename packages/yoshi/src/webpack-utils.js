@@ -166,6 +166,7 @@ function createDevServer(clientCompiler, { publicPath, https, host }) {
     // The server should be accessible externally
     host,
     overlay: true,
+    allowedHosts: ['.wix.com'],
     before(app) {
       // Send cross origin headers
       app.use(cors());
