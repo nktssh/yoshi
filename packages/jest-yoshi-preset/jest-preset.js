@@ -18,7 +18,7 @@ module.exports = {
     ...[
       {
         displayName: 'spec',
-        testEnvironment: 'jsdom',
+        testEnvironment: 'jest-environment-jsdom-fourteen',
         testURL: 'http://localhost',
         testMatch: [`<rootDir>/${globs.unitTests}`],
         setupFiles: [require.resolve('regenerator-runtime/runtime')],
