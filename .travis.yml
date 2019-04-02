@@ -18,7 +18,6 @@ cache:
   yarn: true
 env:
   - WEBSITE_CHANGED = git diff --name-only $TRAVIS_COMMIT_RANGE | grep "website/"
-  - GITHUB_TOKEN = d178bdf878dac03de13b68176842201ebb4ec7ac
 jobs:
   include:
     - name: "website"
