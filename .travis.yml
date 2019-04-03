@@ -17,22 +17,23 @@ branches:
 cache:
   yarn: true
 env:
-  - WEBSITE_CHANGED = git diff --name-only $TRAVIS_COMMIT_RANGE | grep "website/"
+  - WEBSITE_CHANGED = git diff --name-only $TRAVIS_COMMIT_RANGE | grep -E "website/|docs/"
 jobs:
   include:
-    - name: "website"
+    - name: "website:publish"
       if: type != pull_request AND branch = master
       script:
       - git config --global user.name "${GH_NAME}"
       - git config --global user.email "${GH_EMAIL}"
       - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
       - cd website && yarn install && GIT_USER="${GH_NAME}" yarn run publish-gh-pages 
-    - name: "website - build for release to surge if there are changes"
+    - name: "website:preview"
       if: type = pull_request AND WEBSITE_CHANGED
       script:
       - cd website
       - yarn install 
       - yarn build
+      - ./deploy_website_to_surge.sh
     - name: "test:integration"
       if: type != pull_request
       before_script: 
@@ -55,5 +56,3 @@ jobs:
       if: type != pull_request
       before_script: npm install
       script: npm run lint 
-after_success:
-  - ./deploy_website_to_surge.sh
