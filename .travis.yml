@@ -30,9 +30,8 @@ jobs:
     - name: "website:preview"
       if: type = pull_request AND WEBSITE_CHANGED
       script:
-      - cd website
-      - yarn install 
-      - yarn build
+      - yarn --cwd './website'
+      - yarn --cwd './website' run build
       - ./deploy_website_to_surge.sh
     - name: "test:integration"
       if: type != pull_request
