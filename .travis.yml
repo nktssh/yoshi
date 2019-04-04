@@ -32,7 +32,7 @@ jobs:
       script:
       - yarn --cwd './website'
       - yarn --cwd './website' run build
-      - ./deploy_website_to_surge.sh
+      - npx surge --project ./website/build --domain wix-yoshi-${TRAVIS_PULL_REQUEST}.surge.sh
     - name: "test:integration"
       if: type != pull_request
       before_script: 
