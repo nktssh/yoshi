@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-npx surge --project ./build --domain wix-yoshi-${TRAVIS_PULL_REQUEST}.surge.sh;
+npx surge --project ./website/build --domain wix-yoshi-${TRAVIS_PULL_REQUEST}.surge.sh;
 
 #inspired by https://damien.pobel.fr/post/github-api-from-travisci/
 CURL_RESULT = curl -H "Authorization: token ${GITHUB_TOKEN}" -X POST \
